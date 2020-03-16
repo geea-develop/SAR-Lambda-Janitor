@@ -18,9 +18,9 @@ const clean = async () => {
 	// clone the functions that are left to do so that as we iterate with it we
 	// can remove cleaned functions from 'functions'
 	const toClean = functions.map(x => x);
-	log.debug(`${toClean.length} functions to clean...`, { 
-		functions: toClean, 
-		count: toClean.length 
+	log.debug(`${toClean.length} functions to clean...`, {
+		functions: toClean,
+		count: toClean.length
 	});
 
 	for (const func of toClean) {
@@ -42,6 +42,7 @@ const cleanFunc = async (funcArn) => {
 	// drop the most recent N versions
 	log.debug(`keeping the most recent ${versionsToKeep} versions`);
 	versions = _.drop(versions, versionsToKeep);
+	console.debug(`[${funcArn}] Dropping versions ...\n`, versions.toString());
 
 	for (const version of versions) {
 		if (!aliasedVersions.includes(version)) {
